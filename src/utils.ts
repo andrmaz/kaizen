@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import 'dotenv/config';
 
-const token = process.env['GITHUB_TOKEN'];
+const token = process.env['OPENAI_API_KEY'];
 const endpoint = 'https://models.github.ai/inference';
 const model = 'openai/gpt-5-mini';
 
