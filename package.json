@@ -40,6 +40,8 @@
     "ci": "npm run build && npm run check-format && npm run test"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^2.0.20",
+    "ai": "^5.0.56",
     "dotenv": "^17.2.2"
   }
 }

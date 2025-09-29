@@ -1,24 +1,22 @@
-import OpenAI from 'openai';
-import 'dotenv/config';
+import { generateText } from 'ai';
+import { model } from './model.js';
+import { altTextImagePrompt } from './prompt.js';
 
-const token = process.env['OPENAI_API_KEY'];
-const endpoint = 'https://models.github.ai/inference';
-const model = 'openai/gpt-5-mini';
-
-export async function main() {
-  const client = new OpenAI({ baseURL: endpoint, apiKey: token });
-
-  const response = await client.chat.completions.create({
+export const describeImage = async (url: string) => {
+  const response = await generateText({
+    model,
+    system: altTextImagePrompt,
     messages: [
-      { role: 'system', content: 'You are a helpful assistant.' },
-      { role: 'user', content: 'What is the capital of France?' },
+      {
+        role: 'user',
+        content: [
+          {
+            type: 'image',
+            image: new URL(url),
+          },
+        ],
+      },
     ],
-    model: model,
   });
-
-  return response.choices[0]?.message.content;
-}
-
-main().catch((err) => {
-  console.error('The sample encountered an error:', err);
-});
+  return response.text;
+};
