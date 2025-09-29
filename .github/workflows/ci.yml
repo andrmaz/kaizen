@@ -28,4 +28,4 @@ jobs:
       - name: Run CI
         run: npm run ci
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
