@@ -25,8 +25,12 @@ export const generateImageAltText = async (url: string) => {
   return response.text;
 };
 
-export const extractDataFromPdfFile = async (path: string, system: string, schema: z.ZodSchema) => {
-  const file = readFileSync(path)
+export const extractDataFromPdfFile = async (
+  path: string,
+  system: string,
+  schema: z.ZodSchema,
+) => {
+  const file = readFileSync(path);
   const response = await generateObject({
     model,
     system,

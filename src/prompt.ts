@@ -14,4 +14,4 @@ export const trainingSheetPrompt = `
         - week
         - workouts (an array of objects with exercise, sets, reps, weight)
     If any information is missing, return an empty string for that field.
-    Ensure the JSON is properly formatted and valid.`
+    Ensure the JSON is properly formatted and valid.`;

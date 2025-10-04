@@ -40,14 +40,22 @@ evalite('Training Sheet Data Extraction', {
     ];
   },
   task: async () => {
-    const trainingSheet = path.join(import.meta.dirname, '../data/training_sheet.pdf');
-    const response = await extractDataFromPdfFile(trainingSheet, trainingSheetPrompt, trainingSheetSchema);
+    const trainingSheet = path.join(
+      import.meta.dirname,
+      '../data/training_sheet.pdf',
+    );
+    const response = await extractDataFromPdfFile(
+      trainingSheet,
+      trainingSheetPrompt,
+      trainingSheetSchema,
+    );
     return response;
   },
   scorers: [
     {
       name: 'Valid Structure',
-      description: 'Checks if extracted data has reasonable structure and non-empty fields',
+      description:
+        'Checks if extracted data has reasonable structure and non-empty fields',
       scorer: ({ output }) => {
         if (!output || typeof output !== 'object') return 0;
 
@@ -67,12 +75,16 @@ evalite('Training Sheet Data Extraction', {
         if (output.weeks && output.weeks.trim().length > 0) score++;
 
         // Check workouts array exists and has items
-        if (output.workouts && Array.isArray(output.workouts) && output.workouts.length > 0) {
+        if (
+          output.workouts &&
+          Array.isArray(output.workouts) &&
+          output.workouts.length > 0
+        ) {
           score++;
 
           // Check that workouts have proper structure
-          const validWorkouts = output.workouts.filter((w: any) =>
-            w.exercise && w.sets && w.reps && w.weight
+          const validWorkouts = output.workouts.filter(
+            (w: any) => w.exercise && w.sets && w.reps && w.weight,
           );
 
           if (validWorkouts.length === output.workouts.length) {
