@@ -1,1 +1,1 @@
-export * from './main.js';
+export { generateImageAltText as describeImage } from './main.js';
